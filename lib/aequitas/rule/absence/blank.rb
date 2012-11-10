@@ -3,14 +3,11 @@
 module Aequitas
   class Rule
     class Absence
-      class Blank < Absence
+      class Blank < self
+        TYPE = :not_blank
 
         def valid_value?(value)
           Aequitas.blank?(value)
-        end
-
-        def violation_type
-          :not_blank
         end
 
       end # class Blank

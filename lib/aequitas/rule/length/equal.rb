@@ -3,22 +3,30 @@
 module Aequitas
   class Rule
     class Length
-      class Equal < Length
+      class Equal < self
+        TYPE = :wrong_length
 
         equalize(:expected)
 
         attr_reader :expected
 
+        # Initialize options
+        #
+        # @param [Symbol] attribute_name
+        # @param [Hash] options
+        #
         def initialize(attribute_name, options)
           super
 
           @expected = options.fetch(:expected)
         end
 
-        def violation_type
-          :wrong_length
-        end
-
+        # Return violation data
+        #
+        # @return [Array]
+        #
+        # @api private
+        #
         def violation_data
           [ [ :expected, expected ] ]
         end
@@ -28,8 +36,11 @@ module Aequitas
         # @param [Integer] length
         #   the value length
         #
-        # @return [String, nil]
-        #   the error message if invalid, nil if not
+        # @return [true]
+        #   if length matches
+        #
+        # @return [false]
+        #   otherwise
         #
         # @api private
         def expected_length?(length)

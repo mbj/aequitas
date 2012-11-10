@@ -24,6 +24,7 @@ module Aequitas
       #   the value to be tested
       # 
       # @return [Boolean]
+      #
       def skip?(value)
         if value.nil?
           @allow_nil.nil? ? allow_blank? : allow_nil?
@@ -37,6 +38,7 @@ module Aequitas
       # Inquire whether the receiver is configured to allow nil values
       # 
       # @return [Boolean]
+      #
       def allow_nil?
         @allow_nil.nil? ? false : @allow_nil
       end
@@ -44,6 +46,7 @@ module Aequitas
       # Inquire whether the receiver is configured to allow blank values
       # 
       # @return [Boolean]
+      #
       def allow_blank?
         @allow_blank.nil? ? false : @allow_blank
       end

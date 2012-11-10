@@ -3,7 +3,8 @@
 module Aequitas
   class Rule
     class Numericalness
-      class NonInteger < Numericalness
+      class NonInteger < self
+        TYPE = :not_a_number
 
         attr_reader :precision
         attr_reader :scale
@@ -19,7 +20,8 @@ module Aequitas
           end
         end
 
-        def expected(precision = @precision, scale = @scale)
+        def expected
+          precision, scale = self.precision, self.scale
           if precision && scale
             if precision > scale && scale == 0
               /\A[+-]?(?:\d{1,#{precision}}(?:\.0)?)\z/
@@ -34,10 +36,6 @@ module Aequitas
           else
             /\A[+-]?(?:\d+|\d*\.\d+)\z/
           end
-        end
-
-        def violation_type
-          :not_a_number
         end
 
       end # class NonInteger

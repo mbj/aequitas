@@ -2,7 +2,7 @@
 
 module Aequitas
   class Rule
-    class Method < Rule
+    class Method < self
 
       equalize(:method)
 
@@ -21,7 +21,7 @@ module Aequitas
         if result
           nil
         else
-          Violation::Rule.new(resource, error_message, :rule => self)
+          Violation.new(resource, self)
         end
       end
 

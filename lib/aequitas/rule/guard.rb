@@ -33,16 +33,16 @@ module Aequitas
       # @api private
       def allow?(resource)
         if if_test
-          !!evaluate_conditional_clause(resource, if_test)
+          !!self.class.evaluate_conditional_clause(resource, if_test)
         elsif unless_test
-          !evaluate_conditional_clause(resource, unless_test)
+          !self.class.evaluate_conditional_clause(resource, unless_test)
         else
           true
         end
       end
 
       # @api private
-      def evaluate_conditional_clause(resource, clause)
+      def self.evaluate_conditional_clause(resource, clause)
         if clause.respond_to?(:call)
           clause.call(resource)
         elsif clause.kind_of?(Symbol)

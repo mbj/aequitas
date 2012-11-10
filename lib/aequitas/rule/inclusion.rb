@@ -2,7 +2,8 @@
 
 module Aequitas
   class Rule
-    class Inclusion < Rule
+    class Inclusion < self
+      TYPE = :inclusion
 
       equalize(:set)
 
@@ -16,10 +17,6 @@ module Aequitas
 
       def valid_value?(value)
         skip?(value) || set.include?(value)
-      end
-
-      def violation_type
-        :inclusion
       end
 
       # TODO: is it worth converting to a String (dumping this information)?

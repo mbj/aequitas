@@ -2,7 +2,8 @@
 
 module Aequitas
   class Rule
-    class Format < Rule
+    class Format < self
+      TYPE = :invalid
 
       FORMATS = {}
       # TODO: evaluate re-implementing custom error messages per format type
@@ -53,19 +54,6 @@ module Aequitas
         # This is to work around a bug in jruby - see formats/email.rb
         false
       end
-
-      def violation_type
-        :invalid
-      end
-
-      # TODO: integrate format into error message key?
-      # def error_message_args
-      #   if format.is_a?(Symbol)
-      #     [ :"invalid_#{format}", attribute_name ]
-      #   else
-      #     [ :invalid, attribute_name ]
-      #   end
-      # end
 
     end # class Format
   end # class Rule

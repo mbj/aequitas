@@ -3,14 +3,11 @@
 module Aequitas
   class Rule
     class Value
-      class Range < Value
+      class Range < self
+        TYPE = :value_between
 
         def expected_value?(value)
           expected.cover?(value)
-        end
-
-        def violation_type
-          :value_between
         end
 
         def violation_data

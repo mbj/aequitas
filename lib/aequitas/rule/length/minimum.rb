@@ -3,7 +3,8 @@
 module Aequitas
   class Rule
     class Length
-      class Minimum < Length
+      class Minimum < self
+        TYPE = :too_short
 
         equalize(:bound)
 
@@ -13,10 +14,6 @@ module Aequitas
           super
 
           @bound = options.fetch(:bound)
-        end
-
-        def violation_type
-          :too_short
         end
 
         def violation_data

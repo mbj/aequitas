@@ -58,8 +58,8 @@ describe Aequitas::Rule::Acceptance do
     end
   end
 
-  describe '#violation_type' do
-    subject { rule.violation_type }
+  describe '#type' do
+    subject { rule.type }
 
     it('returns :accepted') { assert_equal :accepted, subject }
   end

@@ -50,10 +50,6 @@ describe Aequitas::Validator do
 #     assert_same subject.violations.on(:name).first.resource, object
 #   end
 
-    it 'violations on invalid attributes are not empty' do
-      assert_equal subject.violations.on(:name).first.message, 'name must not be blank' 
-    end
-
     it 'violations on valid attributes are empty' do
       assert_predicate subject.violations.on(:amount), :empty?
     end

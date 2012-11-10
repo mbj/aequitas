@@ -3,17 +3,14 @@
 module Aequitas
   class Rule
     class Value
-      class GreaterThan < Value
+      class GreaterThan < self
+        TYPE = :greater_than
 
         def expected_value?(value)
           value > expected
         rescue ArgumentError
           # TODO: figure out better solution for: can't compare String with Integer
           true
-        end
-
-        def violation_type
-          :greater_than
         end
 
         def violation_data

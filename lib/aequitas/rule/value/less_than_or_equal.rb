@@ -3,17 +3,14 @@
 module Aequitas
   class Rule
     class Value
-      class LessThanOrEqual < Value
+      class LessThanOrEqual < self
+        TYPE = :less_than_or_equal_to
 
         def expected_value?(value)
           value <= expected
         rescue ArgumentError
           # TODO: figure out better solution for: can't compare String with Integer
           true
-        end
-
-        def violation_type
-          :less_than_or_equal_to
         end
 
         def violation_data

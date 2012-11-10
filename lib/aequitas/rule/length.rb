@@ -39,7 +39,7 @@ module Aequitas
       end
 
       def valid_value?(value)
-        skip?(value) || expected_length?(value_length(value))
+        skip?(value) || expected_length?(self.class.value_length(value))
       end
 
       def expected_length?(length)
@@ -57,16 +57,14 @@ module Aequitas
       #   the length of the value
       #
       # @api private
-      def value_length(value)
+      def self.value_length(value)
         value.length
-      rescue NoMethodError
-        value.to_s.length
       end
 
       if RUBY_VERSION < '1.9'
         # calculate length of multi-byte-encoded strings
         #   as characters rather than bytes
-        def value_length(value)
+        def self.value_length(value)
           value.to_s.scan(/./u).size
         end
       end

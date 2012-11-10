@@ -5,7 +5,7 @@ module Aequitas
     def self.extract_options(arguments)
       arguments.last.kind_of?(Hash) ? arguments.pop : {}
     end
-
+    
     # Validates that the specified attribute is "blank" via the
     # attribute's #blank? method.
     #
@@ -237,11 +237,6 @@ module Aequitas
     # @option [Boolean] :allow_blank
     #   true if number can be blank, false if not.
     #
-    # @option [String] :message
-    #   Custom error message, also can be a callable object that takes
-    #   an object (for pure Ruby objects) or object and property
-    #   (for DM resources).
-    #
     # @option [Numeric] :precision
     #   Required precision of a value.
     #
@@ -381,99 +376,5 @@ module Aequitas
       options = Macros.extract_options(attribute_names)
       validation_rules.add(Rule::Inclusion, attribute_names, options)
     end
-
-    # Validate using the given block. The block given needs to return:
-    # [result::<Boolean>, Error Message::<String>]
-    #
-    # @example [Usage]
-    #   require 'virtus'
-    #   require 'aequitas'
-    #
-    #   class Page
-    #     include Virtus
-    #     include Aequitas
-    #
-    #     attribute :zip_code, String
-    #
-    #     validates_with_block do
-    #       if @zip_code == "94301"
-    #         true
-    #       else
-    #         [false, "You're in the wrong zip code"]
-    #       end
-    #     end
-    #
-    #     # A call to valid? will return false and
-    #     # populate the object's errors with "You're in the
-    #     # wrong zip code" unless zip_code == "94301"
-    #
-    #     # You can also specify field:
-    #
-    #     validates_with_block :zip_code do
-    #       if @zip_code == "94301"
-    #         true
-    #       else
-    #         [false, "You're in the wrong zip code"]
-    #       end
-    #     end
-    #
-    #     # it will add returned error message to :zip_code field
-    #   end
-    #
-    # @api public
-    #
-    def validates_with_block(*attribute_names, &block)
-      unless block_given?
-        raise ArgumentError, 'You need to pass a block to validates_with_block'
-      end
-
-      options = Macros.extract_options(attribute_names)
-      validation_rules.add(Rule::Block, attribute_names, options, &block)
-    end
-
-    # Validate using method called on validated object. The method must
-    # to return either true, or a pair of [false, error message string],
-    # and is specified as a symbol passed with :method option.
-    #
-    # This validator does support multiple attribute_names being specified at a
-    # time, but we encourage you to use it with one property/method at a
-    # time.
-    #
-    # Real world experience shows that method validation is often useful
-    # when attribute needs to be virtual and not a property name.
-    #
-    # @example Usage
-    #   require 'virtus'
-    #   require 'aequitas'
-    #
-    #   class Page
-    #     include Virtus
-    #     include Aequitas
-    #
-    #     attribute :zip_code, String
-    #
-    #     validates_with_method :zip_code,
-    #                          :method => :in_the_right_location?
-    #
-    #     def in_the_right_location?
-    #       if @zip_code == "94301"
-    #         return true
-    #       else
-    #         return [false, "You're in the wrong zip code"]
-    #       end
-    #     end
-    #
-    #     # A call to #valid? will return false and
-    #     # populate the object's errors with "You're in the
-    #     # wrong zip code" unless zip_code == "94301"
-    #   end
-    #
-    # @api public
-    #
-    def validates_with_method(*attribute_names)
-      options = Macros.extract_options(attribute_names)
-      validation_rules.add(Rule::Method, attribute_names, options)
-    end
-
   end # module Macros
 end # module Aequitas

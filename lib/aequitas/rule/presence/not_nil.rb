@@ -3,14 +3,15 @@
 module Aequitas
   class Rule
     class Presence
-      class NotNil < Presence
+      class NotNil < self
+        TYPE = :nil
 
         def valid_value?(value)
-          !value.nil?
+          self.class.valid_value?(value)
         end
 
-        def violation_type
-          :nil
+        def self.valid_value?(value)
+          !value.nil?
         end
 
       end # class NonNil

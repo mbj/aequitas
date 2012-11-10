@@ -4,6 +4,7 @@ module Aequitas
   class Rule
     class Length
       class Maximum < Length
+        TYPE = :too_long
 
         equalize(:bound)
 
@@ -13,10 +14,6 @@ module Aequitas
           super
 
           @bound = options.fetch(:bound)
-        end
-
-        def violation_type
-          :too_long
         end
 
         def violation_data

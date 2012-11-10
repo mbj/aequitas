@@ -25,7 +25,7 @@ module Aequitas
       let(:attribute_name) { :attribute_under_test }
 
       let(:expected_violations) do
-        validation_rules.map { |rule| Violation::Rule.new(subject, nil, :rule => rule) }
+        validation_rules.map { |rule| Violation.new(subject, rule) }
       end
 
     end
@@ -81,11 +81,6 @@ module Aequitas
 
         it 'has a violation under the expected attribute name' do
           assert_equal expected_violations, subject.validate.errors.on(attribute_name)
-        end
-
-        it "the expected violation's message contains the attribute name" do
-          message = subject.validate.errors.on(attribute_name).first.message
-          assert_includes message, attribute_name.to_s
         end
       end
 
@@ -147,11 +142,6 @@ module Aequitas
 
         it 'has a violation under the expected attribute name' do
           assert_equal expected_violations, subject.violations.on(attribute_name)
-        end
-
-        it "the expected violation's message contains the attribute name" do
-          message = subject.violations.on(attribute_name).first.message
-          assert_includes message, attribute_name.to_s
         end
       end
 

@@ -6,9 +6,17 @@ module Aequitas
     let(:object) { Object.new }
     let(:arguments) { [] }
     let(:violation_set) { ViolationSet.new(*arguments) }
-    let(:violation_1) { Violation::Message.new(object, 'message 1', :attribute_name => :attribute) }
-    let(:violation_2) { Violation::Message.new(object, 'message 2', :attribute_name => :attribute) }
-    let(:violation_3) { Violation::Message.new(object, 'message 2', :attribute_name => :other) }
+
+    class DummyViolation
+      attr_reader :attribute_name
+      def initialize(attribute_name)
+        @attribute_name = attribute_name
+      end
+    end
+
+    let(:violation_1) { DummyViolation.new(:attribute) }
+    let(:violation_2) { DummyViolation.new(:attribute) }
+    let(:violation_3) { DummyViolation.new(:other)     }
 
     describe '#initialize' do
       it 'does not raise any errors' do
@@ -20,7 +28,7 @@ module Aequitas
 
     describe '#on' do
 
-      it 'returns nil when no error is present on the requested attribute' do
+      it 'returns true when no error is present on the requested attribute' do
         assert_predicate violation_set.on(:foo), :empty?
       end
 

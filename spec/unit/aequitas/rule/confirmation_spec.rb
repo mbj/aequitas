@@ -19,8 +19,8 @@ describe Aequitas::Rule::Confirmation do
     it('calls #default_to_allowing_blank! on its skip_condition') { rule }
   end
 
-  describe 'violation_type' do
-    subject { rule.violation_type }
+  describe '#type' do
+    subject { rule.type }
 
     it('returns :confirmation') { assert_equal :confirmation, subject }
   end

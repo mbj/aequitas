@@ -3,6 +3,7 @@
 module Aequitas
   class Rule
     class Confirmation < Rule
+      TYPE = :confirmation
 
       equalize(:confirmation_attribute_name)
 
@@ -22,16 +23,12 @@ module Aequitas
         if skip?(value) || value == confirmation_value(resource)
           nil
         else
-          new_violation(resource, value)
+          new_violation(resource)
         end
       end
 
       def confirmation_value(resource)
         resource.validation_attribute_value(@confirmation_attribute_name)
-      end
-
-      def violation_type
-        :confirmation
       end
 
     end # class Confirmation

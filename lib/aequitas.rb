@@ -11,29 +11,6 @@ require 'abstract_class'
 # Library namespace
 module Aequitas
 
-  # Return default message transformer
-  #
-  # @return [MessageTransfomer]
-  #
-  # @api private
-  #
-  def self.default_transformer
-    @default_transformer ||= MessageTransformer.default
-  end
-
-  # Set default message transformer
-  #
-  # @param [MessageTransformer] transformer
-  #
-  # @return [self]
-  #
-  # @api private
-  #
-  def self.default_transformer=(transformer)
-    @default_transformer = transformer
-    self
-  end
-
   # Hook called when module is included
   #
   # @param [Module|Class] descendant
@@ -125,7 +102,6 @@ require 'aequitas/class_methods'
 require 'aequitas/rule_set'
 require 'aequitas/exceptions'
 require 'aequitas/validator'
-require 'aequitas/message_transformer'
 require 'aequitas/rule'
 require 'aequitas/rule/absence'
 require 'aequitas/rule/absence/blank'
@@ -165,6 +141,4 @@ require 'aequitas/rule/inclusion'
 require 'aequitas/rule_set'
 require 'aequitas/version'
 require 'aequitas/violation'
-require 'aequitas/violation/message'
-require 'aequitas/violation/rule'
 require 'aequitas/violation_set'

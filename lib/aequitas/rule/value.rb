@@ -2,7 +2,7 @@
 
 module Aequitas
   class Rule
-    class Value < Rule
+    class Value < self
 
       equalize(:expected)
 

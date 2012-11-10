@@ -25,7 +25,7 @@ module Aequitas
       @violations = violations
     end
 
-    # Return validation violations for a particular attribute_name.
+    # Return validation violations for a particular attribute_name
     #
     # @param [Symbol] attribute_name
     #   The name of the field you want an violation for.

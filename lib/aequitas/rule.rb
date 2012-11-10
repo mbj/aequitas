@@ -13,7 +13,7 @@ module Aequitas
     # @api private
     #
     def self.equalize(*extra)
-      include Equalizer.new(:attribute_name, :custom_message, :guard, :skip_condition, *extra)
+      include Equalizer.new(:attribute_name, :guard, :skip_condition, *extra)
     end
     private_class_method :equalize
 
@@ -24,14 +24,6 @@ module Aequitas
     # @api private
     #
     attr_reader :attribute_name
-
-    # Return custom message
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    attr_reader :custom_message
 
     # Return guard
     #
@@ -69,11 +61,6 @@ module Aequitas
     # @param [String, Symbol] attribute_name
     #   The name of the attribute to validate.
     #
-    # TODO: remove Hash as a value for :message
-    #   (see Violation#[] in backwards.rb)
-    # 
-    # @option [String, Hash] :message
-    #   A custom message that will be used for any violations of this rule
     # @option [Symbol, Proc] :if
     #   The name of a method (on the valiated context) or a Proc to call
     #   (with the context) to determine if the rule should be applied.
@@ -86,7 +73,6 @@ module Aequitas
     #   Whether to skip applying this rule on blank values
     def initialize(attribute_name, options = {})
       @attribute_name = attribute_name
-      @custom_message = options.fetch(:message, nil)
       @guard          = options.fetch(:guard)          { Guard.new(options) }
       @skip_condition = options.fetch(:skip_condition) { SkipCondition.new(options) }
     end
@@ -110,8 +96,18 @@ module Aequitas
       if skip?(value) || valid_value?(value)
         nil
       else
-        new_violation(context, value)
+        new_violation(context)
       end
+    end
+
+    # Return symbolic type of rule
+    #
+    # @return [Symbol]
+    #
+    # @api private
+    #
+    def type
+      self.class::TYPE
     end
 
     # Test if rule should run on context
@@ -189,10 +185,8 @@ module Aequitas
 
   private
 
-    def new_violation(context, value = nil)
-      Violation::Rule.new(context, custom_message,
-        :rule  => self,
-        :value => value)
+    def new_violation(context)
+      Violation.new(context, self)
     end
 
     def assert_kind_of(name, value, *klasses)

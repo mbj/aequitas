@@ -2,8 +2,6 @@ require 'minitest/autorun'
 require 'minitest/unit'
 
 require 'aequitas'
-require 'virtus'
-require 'aequitas/virtus_integration'
 
 #$LOAD_PATH << File.expand_path('../../lib', __FILE__)
 

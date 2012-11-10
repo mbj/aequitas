@@ -6,8 +6,8 @@ describe Aequitas::Rule::Absence::Blank do
   let(:attribute_name) { :foo }
   let(:options) { Hash.new }
 
-  describe '#violation_type' do
-    subject { rule.violation_type }
+  describe '#type' do
+    subject { rule.type }
 
     it('returns :absent') { assert_equal :not_blank, subject }
   end

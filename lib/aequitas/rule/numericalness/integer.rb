@@ -3,14 +3,11 @@
 module Aequitas
   class Rule
     class Numericalness
-      class Integer < Numericalness
+      class Integer < self
+        TYPE = :not_an_integer
 
         def expected
           /\A[+-]?\d+\z/
-        end
-
-        def violation_type
-          :not_an_integer
         end
 
       end # class Equal

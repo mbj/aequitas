@@ -3,7 +3,8 @@
 module Aequitas
   class Rule
     class Length
-      class Range < Length 
+      class Range < self 
+        TYPE = :length_between
 
         equalize(:range)
 
@@ -13,10 +14,6 @@ module Aequitas
           super
 
           @range = options.fetch(:range)
-        end
-
-        def violation_type
-          :length_between
         end
 
         def violation_data

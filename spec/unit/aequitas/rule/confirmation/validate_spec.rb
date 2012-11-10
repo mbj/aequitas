@@ -61,7 +61,7 @@ describe Aequitas::Rule::Confirmation, '#validate' do
 
     describe 'and the value does not equal the confirmation value' do
       let(:expected_violation) do
-        Aequitas::Violation::Rule.new(context, nil, :rule => rule)
+        Aequitas::Violation.new(context, rule)
       end
 
       it('returns a Violation') { assert_equal expected_violation, subject }

@@ -34,13 +34,13 @@ module Aequitas
         # see http://jira.codehaus.org/browse/JRUBY-3765
         $~ = nil if RUBY_PLATFORM[/java/]
 
-        value_as_string(value) =~ expected
+        self.class.value_as_string(value) =~ expected
       rescue ArgumentError
         # TODO: figure out better solution for: can't compare String with Integer
         true
       end
 
-      def value_as_string(value)
+      def self.value_as_string(value)
         case value
         # Avoid Scientific Notation in Float to_s
         when Float      then value.to_d.to_s('F')

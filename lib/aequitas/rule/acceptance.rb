@@ -3,7 +3,8 @@
 module Aequitas
   class Rule
     # TODO: update this to inherit from Rule::Inclusion::Set
-    class Acceptance < Rule
+    class Acceptance < self
+      TYPE = :accepted
 
       equalize(:accept)
 
@@ -22,10 +23,6 @@ module Aequitas
 
       def valid_value?(value)
         skip?(value) || accept.include?(value)
-      end
-
-      def violation_type
-        :accepted
       end
 
     end # class Acceptance

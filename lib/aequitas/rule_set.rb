@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+#encoding: utf-8
 
 module Aequitas
 
@@ -10,17 +10,17 @@ module Aequitas
     extend Forwardable
     include Enumerable
 
-    # @api public
+    # @api private
     def_delegators :attribute_index, :[], :fetch
 
-    # @api public
+    # @api private
     def_delegators :rules, :each, :empty?
 
     # Return rules
     #
     # @return [Enumerable<Rule>]
     #
-    # @api public
+    # @api private
     #
     attr_reader :rules
 
@@ -61,7 +61,6 @@ module Aequitas
     end
 
     # Create a new rule of the given class for each name in +attribute_names+
-    # and add the rules to the RuleSet(s) indicated
     #
     # @param [Aequitas::Rule] rule_class
     #    Rule class, example: Aequitas::Rule::Presence
@@ -92,7 +91,7 @@ module Aequitas
       self
     end
 
-    # Execute all rules against the resource.
+    # Execute all rules against a resource
     # 
     # @param [Object] resource
     #   the resource to be validated
@@ -123,16 +122,6 @@ module Aequitas
       rules.each { |rule| self << rule.dup }
 
       self
-    end
-
-    # Return inspection string
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    def inspect
-      "#<#{ self.class } {#{ rules.map { |e| e.inspect }.join( ', ' ) }}>"
     end
 
     # Return rules for resource

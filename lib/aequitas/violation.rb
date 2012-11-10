@@ -2,7 +2,7 @@
 
 module Aequitas
   class Violation
-    include Adamantium::Flat, Equalizer.new(:context, :rule, :custom_message, :attribute_name)
+    include Adamantium::Flat, Equalizer.new(:context, :rule)
 
     # Return object validated in this violation
     #
@@ -12,42 +12,54 @@ module Aequitas
     #
     attr_reader :context
 
-    # Return custom message for this validation
-    #
-    # @return [String, #call]
-    #   custom message returned by #message and #to_s
-    #
-    # @api private
-    #
-    attr_reader :custom_message
-
     # Rule which generated this Violation
     #
-    # @return [Aequitas::Rule, nil]
-    #   validaiton rule that triggered this violation if present
+    # @return [Aequitas::Rule]
     #
-    # @return [nil]
-    #   otherwise
-    # 
     # @api private
     #
     attr_reader :rule
 
-    # Return message 
+    # Name of the attribute which this Violation pertains to
     #
-    # @param [MessageTransformer] transformer
-    #   option messagetransfomer
+    # @return [Symbol]
+    #   the name of the validated attribute associated with this violation
     #
-    # @return [String]
+    # @api public
+    #
+    def attribute_name
+      rule.attribute_name
+    end
+
+    # Return symbolic type of rule
+    #
+    # @return [Symbol]
     #
     # @api private
     #
-    def message(transformer = Undefined)
-      return @custom_message if @custom_message
+    def type
+      rule.type
+    end
 
-      transformer = Aequitas.default_transformer if Undefined.equal?(transformer)
+    # Return violation info
+    #
+    # @return [Hash]
+    #
+    # @api private
+    #
+    def info
+      rule.violation_info.merge(:value => @value)
+    end
+    memoize :info
 
-      transformer.transform(self)
+    # Return Violation values
+    #
+    # @return [Object]
+    #
+    # @api private
+    #
+    def values
+      rule.violation_values
     end
 
   private
@@ -57,20 +69,16 @@ module Aequitas
     # @param [Object] context
     #   the validated object
     #
-    # @param [String, #call, Hash] message
-    #   an optional custom message for this Violation
-    #
-    # @param [Hash] options
-    #   for configuring concrete subclasses
+    # @param [Rule] rule
+    #   the rule that was violated
     #
     # @return [undefined]
     #
     # @api private
     #
-    def initialize(context, message = nil, options = {})
-      @context       = context
-      @custom_message = message
+    def initialize(context, rule)
+      @context  = context
+      @rule     = rule
     end
-
   end # class Violation
 end # module Aequitas

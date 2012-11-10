@@ -2,7 +2,8 @@
 
 module Aequitas
   class Rule
-    class PrimitiveType < Rule
+    class PrimitiveType < self
+      TYPE = :primitive
 
       attr_reader :primitive
 
@@ -12,18 +13,40 @@ module Aequitas
         @primitive = options.fetch(:primitive)
       end
 
+      # Test if value is valid
+      #
+      # @return [true]
+      #   if value is valid
+      #
+      # @return [false]
+      #   otherwise
+      #
+      # @api private
+      #
       def valid_value?(value)
         skip?(value) || expected_type?(value)
       end
 
+      # Test if value has expected type
+      #
+      # @return [true]
+      #   if value has expected type
+      #
+      # @return [false]
+      #   otherwise
+      #
+      # @api private
+      #
       def expected_type?(value)
         value.is_a?(primitive)
       end
 
-      def violation_type
-        :primitive
-      end
-
+      # Return violation data
+      #
+      # @return [Array]
+      #
+      # @api private
+      #
       def violation_data
         [ [ :primitive, primitive ] ]
       end

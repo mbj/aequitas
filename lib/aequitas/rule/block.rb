@@ -2,7 +2,7 @@
 
 module Aequitas
   class Rule
-    class Block < Rule
+    class Block < self
 
       attr_reader :block, :violation_type
 
