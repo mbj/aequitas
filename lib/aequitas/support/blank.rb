@@ -1,6 +1,6 @@
 module Aequitas
 
-  # Determines whether the specified +value+ is blank.
+  # Determines whether the specified +value+ is blank
   #
   # @param [Object] value
   #

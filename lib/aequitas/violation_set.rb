@@ -34,7 +34,7 @@ module Aequitas
     #   Array of Violations, if there are violations on +attribute_name+
     #   nil if there are no violations on +attribute_name+
     # 
-    # @api public
+    # @api private
     # 
     def on(attribute_name)
       violations.select { |violation| violation.attribute_name == attribute_name }
@@ -44,7 +44,7 @@ module Aequitas
     #
     # @return [Enumerable<Symbol>]
     # 
-    # @api public
+    # @api private
     # 
     def attribute_names
       violations.each_with_object(Set.new) do |violation, names|
@@ -61,7 +61,7 @@ module Aequitas
     # @return [Enumerator<Violation]
     #   otherwise
     #
-    # @api public
+    # @api private
     #
     def each
       return to_enum unless block_given?
@@ -77,7 +77,7 @@ module Aequitas
     #
     # @return [Fixnum]
     #
-    # @api public
+    # @api private
     #
     def size
       violations.size

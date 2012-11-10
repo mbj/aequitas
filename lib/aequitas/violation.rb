@@ -2,7 +2,7 @@
 
 module Aequitas
   class Violation
-    include Adamantium::Flat, Equalizer.new(:context, :rule)
+    include Adamantium::Flat, Equalizer.new(:validator, :rule)
 
     # Return object validated in this violation
     #
@@ -10,7 +10,7 @@ module Aequitas
     # 
     # @api private
     #
-    attr_reader :context
+    attr_reader :validator
 
     # Rule which generated this Violation
     #
@@ -25,7 +25,7 @@ module Aequitas
     # @return [Symbol]
     #   the name of the validated attribute associated with this violation
     #
-    # @api public
+    # @api private
     #
     def attribute_name
       rule.attribute_name
@@ -66,7 +66,7 @@ module Aequitas
 
     # Initialize object
     # 
-    # @param [Object] context
+    # @param [Validator] validator
     #   the validated object
     #
     # @param [Rule] rule
@@ -76,9 +76,8 @@ module Aequitas
     #
     # @api private
     #
-    def initialize(context, rule)
-      @context  = context
-      @rule     = rule
+    def initialize(validator, rule)
+      @validator, @rule  = validator, rule
     end
   end # class Violation
 end # module Aequitas

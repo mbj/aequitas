@@ -2,11 +2,15 @@ require 'spec_helper'
 
 describe Aequitas do
 
+  class DummyObject
+    attr_reader :name, :amount
+    def initialize(name, amount)
+      @name, @amount = name, amount
+    end
+  end
+
   let(:object) do
-    mock = MiniTest::Mock.new
-    mock.expect :name, name
-    mock.expect :amount, amount
-    mock
+    DummyObject.new(name, amount)
   end
 
   let(:class_under_test) do

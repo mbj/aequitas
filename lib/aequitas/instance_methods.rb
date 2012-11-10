@@ -55,7 +55,7 @@ module Aequitas
     # @api public
     #
     def validation_attribute_value(attribute_name)
-      subject.__send__(attribute_name) if subject.respond_to?(attribute_name, true)
+      subject.public_send(attribute_name) 
     end
 
   private
@@ -70,7 +70,7 @@ module Aequitas
     #
     def initialize(subject)
       @subject = subject
-      @violations = ViolationSet.new(rules.validate(self).each.to_a)
+      @violations = ViolationSet.new(rules.validate(self))
     end
 
   end
