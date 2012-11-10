@@ -49,22 +49,6 @@ validator.errors # => [<Aequitas::Rule::Violation ....>]
 
 ```
 
-2) (TODO) Using inferred validations on Virtus attributes, please see Aequitas::Inferred.
-Note that not all validations that are provided via validation methods,
-are also available as autovalidation options. If they are available,
-they're functionally equivalent though.
-
-This functionallity is broken ATM.
-
-```ruby
-class ProgrammingLanguage
-  include Virtus
-  include Aequitas
-
-  attribute :name, String, :required => true
-end
-```
-
 See Aequitas::Macros to learn about the complete collection of validation rules available.
 
 ## Validating
