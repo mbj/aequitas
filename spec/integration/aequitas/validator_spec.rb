@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Aequitas::Validator do
+describe Aequitas do
 
   let(:object) do
     mock = MiniTest::Mock.new
@@ -11,7 +11,7 @@ describe Aequitas::Validator do
 
   let(:class_under_test) do
     Class.new do
-      include Aequitas::Validator
+      include Aequitas
 
       validates_presence_of      :name
       validates_numericalness_of :amount

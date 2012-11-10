@@ -13,95 +13,29 @@ module Aequitas
 
   # Hook called when module is included
   #
-  # @param [Module|Class] descendant
+  # @param [Class|Module] descendant
+  #
+  # @return [undefined]
   #
   # @api private
   #
   def self.included(descendant)
     super
+    descendant.class_eval do
+      include ::Adamantium::Flat
+      include InstanceMethods
+    end
     descendant.extend(ClassMethods)
   end
 
-  # Check if a resource is valid 
-  #
-  # @return [true]
-  #   if resource is valid
-  #
-  # @return [false]
-  #   otherwise
-  #  
-  # @api public
-  #
-  def valid?
-    validate.errors.empty?
-  end
-
-  # Return violations
-  #
-  # @return [ViolationSet]
-  #   the collection of current validation errors for this resource
-  #
-  # @api public
-  #
-  def errors
-    @errors ||= ViolationSet.new
-  end
-
-  # Command a resource to populate its ViolationSet with any violations of
-  #
-  # @return [self]
-  #
-  # @api public
-  #
-  def validate
-    # TODO: errors.replace(validation_violations)
-    @errors = ViolationSet.new(validation_violations)
-
-    self
-  end
-
-  # Get a list of violations for the receiver *without* mutating it
-  # 
-  # @api private
-  #
-  def validation_violations
-    validation_rules.validate(self)
-  end
-
-  # @return [RuleSet]
-  # 
-  # @api private
-  #
-  def validation_rules
-    self.class.validation_rules
-  end
-
-  # Retrieve the value of the given property name for the purpose of validation
-  #
-  # Defaults to sending the attribute name arg to the receiver and
-  # using the resulting value as the attribute value for validation
-  #
-  # @param [Symbol] attribute_name
-  #   the name of the attribute for which to retrieve
-  #   the attribute value for validation.
-  #
-  # @return [Object]
-  #   the value of the attribute identified by +attribute_name+
-  #   for the purpose of validation
-  #
-  # @api public
-  def validation_attribute_value(attribute_name)
-    __send__(attribute_name) if respond_to?(attribute_name, true)
-  end
-
-end # module Aequitas
+end 
 
 require 'aequitas/support/blank'
 require 'aequitas/macros'
 require 'aequitas/class_methods'
+require 'aequitas/instance_methods'
 require 'aequitas/rule_set'
 require 'aequitas/exceptions'
-require 'aequitas/validator'
 require 'aequitas/rule'
 require 'aequitas/rule/absence'
 require 'aequitas/rule/absence/blank'
