@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'aequitas/rule/guard'
 
 module Aequitas
   class Rule

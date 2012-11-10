@@ -14,7 +14,7 @@ module Aequitas
       end
 
       it 'initializes #guard with the :if and :unless options' do
-        expected_guard = Rule::Guard.new(:if => :a, :unless => :b)
+        expected_guard = Aequitas::Guard.new(:if => :a, :unless => :b)
         assert_equal expected_guard, Rule::Length.new(:bar, :length => 10, :if => :a, :unless => :b).guard
       end
     end
