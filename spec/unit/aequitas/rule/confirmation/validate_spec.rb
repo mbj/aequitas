@@ -25,46 +25,25 @@ describe Aequitas::Rule::Confirmation, '#validate' do
       end
     end
   end
-  
-  class MockSkipCondition
-    def initialize(skip)
-      @skip = skip
-    end
 
-    def skip?(attribue_value)
-      @skip
-    end
-  end
-
-  let(:options)         { { :skip_condition => MockSkipCondition.new(is_skipping) } }
+  let(:options)         { { } }
   let(:context)         { MockContext.new(attribute_name, attribute_value, confirmation_attribute_name, confirmation_attribute_value) }
   let(:attribute_value) { :bar }
 
   let(:confirmation_attribute_name)  { rule.confirmation_attribute_name }
   let(:confirmation_attribute_value) { Object.new }
 
-
-  describe 'when #skip? returns true' do
-    let(:is_skipping) { true }
+  describe 'and the value equals the confirmation value' do
+    let(:confirmation_attribute_value) { attribute_value }
 
     it('returns nil') { assert_equal nil, subject }
   end
 
-  describe 'when #skip? returns false' do
-    let(:is_skipping) { false }
-
-    describe 'and the value equals the confirmation value' do
-      let(:confirmation_attribute_value) { attribute_value }
-
-      it('returns nil') { assert_equal nil, subject }
+  describe 'and the value does not equal the confirmation value' do
+    let(:expected_violation) do
+      Aequitas::Violation.new(context, rule)
     end
 
-    describe 'and the value does not equal the confirmation value' do
-      let(:expected_violation) do
-        Aequitas::Violation.new(context, rule)
-      end
-
-      it('returns a Violation') { assert_equal expected_violation, subject }
-    end
+    it('returns a Violation') { assert_equal expected_violation, subject }
   end
 end

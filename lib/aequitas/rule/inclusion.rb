@@ -16,7 +16,7 @@ module Aequitas
       end
 
       def valid_value?(value)
-        skip?(value) || set.include?(value)
+        set.include?(value)
       end
 
       # TODO: is it worth converting to a String (dumping this information)?

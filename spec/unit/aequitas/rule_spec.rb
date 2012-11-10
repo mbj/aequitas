@@ -18,18 +18,5 @@ module Aequitas
         assert_equal expected_guard, Rule::Length.new(:bar, :length => 10, :if => :a, :unless => :b).guard
       end
     end
-
-    describe '#validate' do
-      
-    end
-
-    describe '#execute?' do
-      
-    end
-
-    describe '#skip?' do
-      
-    end
-
   end
 end

@@ -23,7 +23,7 @@ module Aequitas
         #   if so, return a dummy validator when expected is nil
         return true if expected.nil?
 
-        skip?(value) || valid_numericalness?(value)
+        valid_numericalness?(value)
       end
 
       def valid_numericalness?(value)

@@ -24,7 +24,7 @@ module Aequitas
       # @api private
       #
       def valid_value?(value)
-        skip?(value) || expected_type?(value)
+        expected_type?(value)
       end
 
       # Test if value has expected type

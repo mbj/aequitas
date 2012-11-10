@@ -39,7 +39,7 @@ module Aequitas
       end
 
       def valid_value?(value)
-        skip?(value) || expected_length?(self.class.value_length(value))
+        expected_length?(self.class.value_length(value))
       end
 
       def expected_length?(length)

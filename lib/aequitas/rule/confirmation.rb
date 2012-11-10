@@ -20,7 +20,7 @@ module Aequitas
       def validate(resource)
         value = attribute_value(resource)
 
-        if skip?(value) || value == confirmation_value(resource)
+        if value == confirmation_value(resource)
           nil
         else
           new_violation(resource)

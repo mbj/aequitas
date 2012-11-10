@@ -13,16 +13,13 @@ module Aequitas
       attr_reader :accept
 
       def initialize(attribute_name, options = {})
-        unless options.key?(:allow_nil)
-          options[:allow_nil]=true
-        end
         super
 
         @accept = Array(options.fetch(:accept, DEFAULT_ACCEPTED_VALUES)).to_set
       end
 
       def valid_value?(value)
-        skip?(value) || accept.include?(value)
+        accept.include?(value)
       end
 
     end # class Acceptance

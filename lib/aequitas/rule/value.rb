@@ -160,7 +160,7 @@ module Aequitas
         #   if so, return a dummy validator when expected is nil
         return true if expected.nil?
 
-        skip?(value) || expected_value?(value)
+        expected_value?(value)
       end
 
       def expected_value?(value)

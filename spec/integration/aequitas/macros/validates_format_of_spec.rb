@@ -4,7 +4,6 @@ Aequitas::Macros::IntegrationSpec.describe Aequitas::Macros, '#validates_format_
   describe 'with a Proc' do
     before do
       context_under_test.validates_format_of attribute_name, :with => lambda { |value| value.valid? }
-      skip
     end
 
     describe 'when format proc returns true' do

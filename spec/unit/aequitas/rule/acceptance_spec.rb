@@ -24,20 +24,6 @@ describe Aequitas::Rule::Acceptance do
         assert_equal [ '1', 1, 'true', true, 't' ].to_set, subject.accept
       end
     end
-
-    describe 'when the :allow_nil option is absent' do
-      it 'sets allow_nil? to true' do
-        assert_predicate subject.skip_condition, :allow_nil?
-      end
-    end
-
-    describe 'when the :allow_nil option is false' do
-      let(:options) { { :allow_nil => false } }
-
-      it 'sets allow_nil? to false' do
-        refute_predicate subject.skip_condition, :allow_nil?
-      end
-    end
   end
 
   describe '#valid_value?' do

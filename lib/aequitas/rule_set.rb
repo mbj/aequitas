@@ -70,8 +70,7 @@ module Aequitas
     #    [:first_name, :last_name] in validates_presence_of :first_name, :last_name
     #
     # @param [Hash] options
-    #    Options supplied to validation macro, example:
-    #    {:maximum=>50, :allow_nil=>true}
+    #    Options supplied to validation macro, example: { :maximum=>50 }
     #
     # @return [self]
     #

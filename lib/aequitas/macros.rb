@@ -121,12 +121,6 @@ module Aequitas
     # specify your own format via a Proc or Regexp passed to the the :as
     # or :with options.
     #
-    # @option [Boolean] :allow_nil (true)
-    #   true or false.
-    #
-    # @option [Boolean] :allow_blank (true)
-    #   true or false.
-    #
     # @option [Format, Proc, Regexp] :as
     #   The pre-defined format, Proc or Regexp to validate against.
     #
@@ -166,12 +160,6 @@ module Aequitas
     # Validates that the length of the attribute is equal to, less than,
     # greater than or within a certain range (depending upon the options
     # you specify).
-    #
-    # @option [Boolean] :allow_nil (true)
-    #   true or false.
-    #
-    # @option [Boolean] :allow_blank (true)
-    #   true or false.
     #
     # @option [Boolean] :minimum
     #   Ensures that the attribute's length is greater than or equal to
@@ -230,12 +218,6 @@ module Aequitas
     end
 
     # Validate whether a field is numeric.
-    #
-    # @option [Boolean] :allow_nil
-    #   true if number can be nil, false if not.
-    #
-    # @option [Boolean] :allow_blank
-    #   true if number can be blank, false if not.
     #
     # @option [Numeric] :precision
     #   Required precision of a value.

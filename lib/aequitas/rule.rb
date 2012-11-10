@@ -13,7 +13,7 @@ module Aequitas
     # @api private
     #
     def self.equalize(*extra)
-      include Equalizer.new(:attribute_name, :guard, :skip_condition, *extra)
+      include Equalizer.new(:attribute_name, :guard, *extra)
     end
     private_class_method :equalize
 
@@ -33,14 +33,6 @@ module Aequitas
     #
     attr_reader :guard
 
-    # Return guard
-    #
-    # @return [SkipCondition]
-    #
-    # @api private
-    #
-    attr_reader :skip_condition
-
     # Get the validators for the given attribute_name and options
     # 
     # @param [Symbol] attribute_name
@@ -55,8 +47,7 @@ module Aequitas
       Array(new(attribute_name, options, &block))
     end
 
-    # Initialize a rule. Capture the :if and :unless clauses when
-    # present.
+    # Initialize object
     #
     # @param [String, Symbol] attribute_name
     #   The name of the attribute to validate.
@@ -67,14 +58,14 @@ module Aequitas
     # @option [Symbol, Proc] :unless
     #   The name of a method (on the valiated context) or a Proc to call
     #   (with the context) to determine if the rule should *not* be applied.
-    # @option [Boolean] :allow_nil
-    #   Whether to skip applying this rule on nil values
-    # @option [Boolean] :allow_blank
-    #   Whether to skip applying this rule on blank values
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def initialize(attribute_name, options = {})
       @attribute_name = attribute_name
       @guard          = options.fetch(:guard)          { Guard.new(options) }
-      @skip_condition = options.fetch(:skip_condition) { SkipCondition.new(options) }
     end
 
     # Validate the +context+ arg against this Rule
@@ -93,7 +84,7 @@ module Aequitas
     def validate(context)
       value = attribute_value(context)
 
-      if skip?(value) || valid_value?(value)
+      if valid_value?(value)
         nil
       else
         new_violation(context)
@@ -122,23 +113,6 @@ module Aequitas
     #
     def execute?(context)
       guard.allow?(context)
-    end
-
-    # Test if rule is skipped on value
-    #
-    # @param [Object] value
-    #   the value to test
-    #
-    # @return [true]
-    #   if value should be skipped
-    #
-    # @return [false]
-    #   otherwise
-    #
-    # @api private
-    #
-    def skip?(value)
-      skip_condition.skip?(value)
     end
 
     # Return attribute value to execute on rule
