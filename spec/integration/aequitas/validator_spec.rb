@@ -15,10 +15,11 @@ describe Aequitas do
 
   let(:class_under_test) do
     Class.new do
-      include Aequitas
+      include Aequitas, Equalizer.new(:resource, :result)
 
-      validates_presence_of      :name
-      validates_numericalness_of :amount
+      validates_presence_of  :name
+
+      validates_primitive_of :amount, :primitive => Integer
     end
   end
 
@@ -29,16 +30,12 @@ describe Aequitas do
     let(:amount) { 815        }
 
     it '#valid? returns true' do
-      assert_predicate subject, :valid?
-    end
-
-    it '#violations is empty' do
-      assert_predicate subject.violations, :empty?
+      subject.valid?.should be(true)
     end
 
     it 'violations on attributes are empty' do
-      assert_predicate subject.violations.on(:name), :empty?
-      assert_predicate subject.violations.on(:amount), :empty?
+      subject.on(:name).empty?.should be(true)
+      subject.on(:amount).empty?.should be(true)
     end
   end
 
@@ -46,16 +43,10 @@ describe Aequitas do
     let(:name)   { ''   }
     let(:amount) { 815  }
 
-    it '#valid? returns false' do
-      refute_predicate subject, :valid?
-    end
-
-#   it 'returns resource as validated object on violations' do
-#     assert_same subject.violations.on(:name).first.resource, object
-#   end
+    its(:valid?) { should be(false) }
 
     it 'violations on valid attributes are empty' do
-      assert_predicate subject.violations.on(:amount), :empty?
+      subject.on(:amount).empty?.should be(true)
     end
   end
 end

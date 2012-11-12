@@ -11,11 +11,11 @@ ClassVariableCheck:              {}
 CyclomaticComplexityBlockCheck:
   complexity: 2
 CyclomaticComplexityMethodCheck:
-  complexity: 7 # TODO decrease to 4
+  complexity: 4 
 EmptyRescueBodyCheck:            {}
 ForLoopCheck:                    {}
 MethodLineCountCheck:
-  line_count: 15 # TODO decrease to 9
+  line_count: 8 # TODO decrease to 9
 MethodNameCheck:
   pattern: !ruby/regexp /\A(?:[a-z\d](?:_?[a-z\d])+[?!=]?|\[\]=?|==|<=>|<<|[+*&|-])\z/
 ModuleLineCountCheck:

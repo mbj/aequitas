@@ -1,13 +1,15 @@
 module Aequitas
+  # Instance level mixins
   module InstanceMethods
+    include Adamantium
 
-    # Return validated subject
+    # Return validated resource
     #
     # @return [Object]
     #
     # @api private
     #
-    attr_reader :subject
+    attr_reader :resource
 
     # Return violation set
     #
@@ -15,7 +17,10 @@ module Aequitas
     #
     # @api private
     #
-    attr_reader :violations
+    def result
+      self.class.validator.evaluate(resource)
+    end
+    memoize :result
 
     # Test if validator is valid
     #
@@ -25,52 +30,46 @@ module Aequitas
     # @return [false]
     #   otherwise
     #
-    def valid?
-      violations.empty?
-    end
-
-    # Return validation rules
-    #
-    # @return [RuleSet]
-    # 
     # @api private
     #
-    def rules
-      self.class.validation_rules
+    def valid?
+      result.valid?
     end
 
-    # Retrieve the value of the given property name for the purpose of validation
-    #
-    # Defaults to sending the attribute name arg to the receiver and
-    # using the resulting value as the attribute value for validation
+    # Return violations on attribute name
     #
     # @param [Symbol] attribute_name
-    #   the name of the attribute for which to retrieve
-    #   the attribute value for validation.
     #
-    # @return [Object]
-    #   the value of the attribute identified by +attribute_name+
-    #   for the purpose of validation
+    # @return [Enumerable<Violation>]
     #
-    # @api public
+    # @api private
     #
-    def validation_attribute_value(attribute_name)
-      subject.public_send(attribute_name) 
+    def on(attribute_name)
+      result.on(attribute_name)
+    end
+
+    # Return violations
+    #
+    # @return [Enumerable<Violation>]
+    #
+    # @api private
+    #
+    def violations
+      result.violations
     end
 
   private
 
-    # Initialize subject
+    # Initialize resource
     #
-    # @param [Object] subject
+    # @param [Object] resource
     #
     # @return [undefined]
     #
     # @api private
     #
-    def initialize(subject)
-      @subject = subject
-      @violations = ViolationSet.new(rules.validate(self))
+    def initialize(resource)
+      @resource = resource
     end
 
   end

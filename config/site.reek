@@ -8,7 +8,7 @@ UncommunicativeParameterName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 12 # Todo decrease to 10
+  max_methods: 10 # Todo decrease to 10
   exclude: []
   enabled: true
   max_instance_variables: 3
@@ -21,7 +21,7 @@ UncommunicativeMethodName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LongParameterList:
-  max_params: 3 # TODO decrease to 2
+  max_params: 2 
   exclude: []
   enabled: true
   overrides: {}
@@ -36,7 +36,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: false # Todo enable
+  enabled: false # Fix false positives and reenable
 UncommunicativeModuleName:
   accept: []
   exclude: []
@@ -46,22 +46,24 @@ UncommunicativeModuleName:
   - !ruby/regexp /[0-9]$/
 NestedIterators:
   ignore_iterators: []
-  exclude:
-  - Aequitas::ContextualRuleSet#add
+  exclude: []
   enabled: true
   max_allowed_nesting: 1
 LongMethod:
-  max_statements: 16 # Todo decrease to 6
+  max_statements: 8 
   exclude: []
   enabled: true
 Duplication:
   allow_calls: []
-  exclude: []
+  exclude: 
+  - Aequitas#self.blank
   enabled: true
-  max_calls: 2 # Todo decrease to 1
+  max_calls: 1 
 UtilityFunction:
-  max_helper_calls: 1 # Todo decrease to 0
-  exclude: []
+  max_helper_calls: 0 
+  exclude: 
+  - Aequitas::Validator#add # TODO fix false positive
+  - Aequitas::Matcher::Nullary#matches? 
   enabled: true
 Attribute:
   exclude: []
@@ -77,15 +79,14 @@ UncommunicativeVariableName:
 SimulatedPolymorphism:
   exclude: []
   enabled: true
-  max_ifs: 2 # Todo decrease to 1
+  max_ifs: 1 
 DataClump:
   exclude: []
   enabled: true
-  max_copies: 3 # Todo decrease to 2
-  min_clump_size: 3 # Todo decrease to 2
+  max_copies: 2 
+  min_clump_size: 2 
 ControlCouple:
-  exclude: 
-  - Aequitas::Rule::Format::Regexp#expected_format?  # Todo remove
+  exclude: []
   enabled: true
 LongYieldList:
   max_params: 1

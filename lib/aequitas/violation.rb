@@ -1,8 +1,9 @@
-# -*- encoding: utf-8 -*-
+#encoding: utf-8
 
 module Aequitas
+  # Rule violation on resouce
   class Violation
-    include Adamantium::Flat, Equalizer.new(:validator, :rule)
+    include Adamantium::Flat, Equalizer.new(:resource, :rule)
 
     # Return object validated in this violation
     #
@@ -10,7 +11,7 @@ module Aequitas
     # 
     # @api private
     #
-    attr_reader :validator
+    attr_reader :resource
 
     # Rule which generated this Violation
     #
@@ -66,7 +67,7 @@ module Aequitas
 
     # Initialize object
     # 
-    # @param [Validator] validator
+    # @param [Resource] resource
     #   the validated object
     #
     # @param [Rule] rule
@@ -76,8 +77,8 @@ module Aequitas
     #
     # @api private
     #
-    def initialize(validator, rule)
-      @validator, @rule  = validator, rule
+    def initialize(rule, resource)
+      @rule, @resource = rule, resource
     end
   end # class Violation
 end # module Aequitas
