@@ -22,7 +22,8 @@ UncommunicativeMethodName:
   - !ruby/regexp /[A-Z]/
 LongParameterList:
   max_params: 2 
-  exclude: []
+  exclude: 
+  - Aequitas::Builder::Nullary#initialize # 3 Parameters, fix this!
   enabled: true
   overrides: {}
 FeatureEnvy:

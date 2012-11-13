@@ -3,7 +3,7 @@ module Aequitas
     class Unary
 
       # Boolean not matcher
-      class Not < self
+      class NOT < self
 
         # Return inverse of operand
         #

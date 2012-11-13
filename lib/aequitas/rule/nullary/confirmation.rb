@@ -18,17 +18,7 @@ module Aequitas
           class Confirm
             include Adamantium::Flat, AbstractClass
 
-            DEFAULT = Class.new(self) do
-
-              # Return inspection string
-              #
-              # @return [String]
-              #
-              # @api private
-              #
-              def inspect
-                "#{self.class.superclass.name}::DEFAULT".freeze
-              end
+            Aequitas.singleton_constant(self, :DEFAULT) do
 
               # Return confirmation attribute name
               #
@@ -42,7 +32,7 @@ module Aequitas
                 :"#{attribute_name}_confirmation"
               end
 
-            end.new
+            end
 
             # Build confirm object
             #

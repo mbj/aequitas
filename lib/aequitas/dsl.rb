@@ -47,16 +47,16 @@ module Aequitas
 
     # Hook called when method is missing
     #
-    # @param [Symbol] name
+    # @param [Symbol] method_name
     #
     # @return [self]
     #
     # @api private
     #
-    def method_missing(name, *args)
-      klass = DSL.lookup(name) { super }
+    def method_missing(method_name, *arguments)
+      klass = DSL.lookup(method_name) { super }
 
-      klass.run(args).each do |rule|
+      Evaluator.new(klass, arguments).rules.each do |rule|
         add(rule)
       end
 

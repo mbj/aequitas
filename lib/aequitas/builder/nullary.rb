@@ -100,13 +100,12 @@ module Aequitas
       #
       # @param [Class] klass
       # @param [Enumerable<Object>] arguments
+      # @param [Hash] options
       #
       # @api private
       #
-      def initialize(klass, arguments)
-        @klass     = klass
-        @options   = arguments.last.kind_of?(Hash) ? arguments.pop : {}
-        @arguments = arguments
+      def initialize(klass, arguments, options)
+        @klass, @arguments, @options = klass, arguments, options
         assert_known_options
         assert_required_options
         assert_arguments

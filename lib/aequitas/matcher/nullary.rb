@@ -5,15 +5,7 @@ module Aequitas
     class Nullary < self
 
       # Matcher that matches blank values
-      BLANK = Class.new(self) do
-
-        # Return inspectable string 
-        #
-        # @return [String]
-        #
-        # @api private
-        #
-        def inspect; "#{self.class.superclass}::BLANK".freeze; end
+      Aequitas.singleton_constant(self, :BLANK) do
 
         # Test if value is blank
         #
@@ -29,7 +21,7 @@ module Aequitas
           Aequitas.blank?(value)
         end
 
-      end.new
+      end
     end
   end
 end

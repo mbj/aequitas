@@ -79,8 +79,7 @@ module Aequitas
       @rules = rules.to_set
     end
 
-    EMPTY = Class.new do
-      def inspect; "#{self.class.superclass}::EMPTY".freeze; end
+    Aequitas.singleton_constant(self, :EMPTY) do
 
       # Return rule set with added rule
       #
@@ -101,7 +100,7 @@ module Aequitas
       # @api private
       #
       def initialize; end
-    end.new
+    end
   end
 
 end

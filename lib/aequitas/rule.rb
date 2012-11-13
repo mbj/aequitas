@@ -6,6 +6,16 @@ module Aequitas
   class Rule
     include AbstractClass, Adamantium::Flat
 
+    # Return violations for resource
+    #
+    # @param [Resource] resource
+    #
+    # @return [Enumerable<Violations>]
+    #
+    def violations(resource)
+      evaluate(resource).violations
+    end
+
     # Return evaluator for resource
     # 
     # @param [Object] resource
@@ -19,16 +29,6 @@ module Aequitas
       evaluator.new(self, resource)
     end
 
-    # Return violations for resource
-    #
-    # @param [Resource] resource
-    #
-    # @return [Enumerable<Violations>]
-    #
-    def violations(resource)
-      evaluate(resource).violations
-    end
-
     # Return evaluator
     #
     # @return [Class:Evaluator]
@@ -37,16 +37,6 @@ module Aequitas
     #
     def evaluator
       self.class::Evaluator
-    end
-
-    # Return symbolic type of rule
-    #
-    # @return [Symbol]
-    #
-    # @api private
-    #
-    def type
-      self.class::TYPE
     end
 
   end # class Rule

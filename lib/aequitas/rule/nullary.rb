@@ -28,6 +28,16 @@ module Aequitas
         self::Builder
       end
 
+      # Return symbolic type of rule
+      #
+      # @return [Symbol]
+      #
+      # @api private
+      #
+      def type
+        self.class::TYPE
+      end
+
       # Proxy class to simplify builder registration
       class Proxy
         include Adamantium::Flat
@@ -40,8 +50,8 @@ module Aequitas
         #
         # @api private
         #
-        def run(arguments)
-          @builder.run(@klass, arguments)
+        def run(*arguments)
+          @builder.run(@klass, *arguments)
         end
 
       private

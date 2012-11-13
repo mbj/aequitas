@@ -38,7 +38,7 @@ module Aequitas
         #
         # @api private
         #
-        def initialize(operand, attribute_name)
+        def initialize(attribute_name, operand)
           @attribute_name = attribute_name
           super(operand)
         end

@@ -89,11 +89,7 @@ module Aequitas
             # @api private
             #
             def minimum
-              option = options.fetch(:minimum) { return }
-              Matcher::Binary::OR.new(
-                Matcher::Nullary::GreaterThan.new(option),
-                Matcher::Nullary::Equality.new(option)
-              )
+              process(:minimum, Matcher::Nullary::GreaterThan)
             end
             memoize :minimum
 
@@ -108,13 +104,30 @@ module Aequitas
             # @api private
             #
             def maximum
-              option = options.fetch(:maximum) { return }
+              process(:maximum, Matcher::Nullary::LessThan)
+            end
+            memoize :maximum
+
+            # Return matcher
+            #
+            # @param [Symbol] key
+            # @param [Class] klass
+            #
+            # @return [Matcher]
+            #   if key option is present
+            #
+            # @return [nil]
+            #   otherwise
+            #
+            # @api private
+            #
+            def process(key, klass)
+              option = options.fetch(key) { return }
               Matcher::Binary::OR.new(
-                Matcher::Nullary::LessThan.new(option),
+                klass.new(option),
                 Matcher::Nullary::Equality.new(option)
               )
             end
-            memoize :maximum
 
             # Return length matcher
             #

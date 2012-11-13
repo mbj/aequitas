@@ -8,7 +8,7 @@ module Aequitas
         # Rule for testing attribute presance
         class Presence < self
           TYPE = :presence
-          MATCHER = Matcher::Unary::Not.new(Matcher::Nullary::BLANK)
+          MATCHER = Matcher::Unary::NOT.new(Matcher::Nullary::BLANK)
           register :validates_presence_of
 
         private
