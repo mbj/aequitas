@@ -35,13 +35,13 @@ class ProgrammingLanguageValidator
   validates_presence_of :name
 end
 
-ruby = ProrammingLanguage.new('ruby')
+ruby = ProgrammingLanguage.new('ruby')
 
 validator = ProgrammingLanguageValidator.new(ruby)
 validator.valid? # => true
 validator.errors # => []
 
-other = ProrammingLanguage.new('')
+other = ProgrammingLanguage.new('')
 
 validator = ProgrammingLanguageValidator.new(other)
 validator.valid? # => false
