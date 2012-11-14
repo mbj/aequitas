@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
   s.executables   = []
   s.require_paths = ['lib']
 
-  s.add_dependency('backports', '~> 2.6.4')
+  s.add_dependency('backports',  '~> 2.6.4')
+  s.add_dependency('adamantium', '~> 0.0.3')
 end
