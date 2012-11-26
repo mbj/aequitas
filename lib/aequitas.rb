@@ -7,7 +7,7 @@ require 'bigdecimal/util'
 require 'forwardable'
 require 'adamantium'
 require 'equalizer'
-require 'abstract_class'
+require 'abstract_type'
 require 'ice_nine'
 require 'ice_nine/core_ext/object'
 
