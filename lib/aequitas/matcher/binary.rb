@@ -2,7 +2,7 @@ module Aequitas
   class Matcher
     # Abstract base class for binary matcher
     class Binary < self
-      include AbstractClass, Equalizer.new(:left, :right)
+      include AbstractType, Equalizer.new(:left, :right)
 
       # Return left
       #

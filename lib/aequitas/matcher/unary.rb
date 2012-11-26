@@ -3,7 +3,7 @@ module Aequitas
 
     # Abstract base class for unary matchers
     class Unary < self
-      include AbstractClass, Equalizer.new(:operand)
+      include AbstractType, Equalizer.new(:operand)
       
       # Return operand
       #

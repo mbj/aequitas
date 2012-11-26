@@ -1,7 +1,7 @@
 module Aequitas
   # Abstract base class for matchers
   class Matcher
-    include Adamantium::Flat, AbstractClass
+    include Adamantium::Flat, AbstractType
 
     # Test if value matches
     #

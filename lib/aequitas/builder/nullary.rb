@@ -2,7 +2,7 @@ module Aequitas
   class Builder
     # Abstract base class for nullary builders
     class Nullary < self
-      include AbstractClass
+      include AbstractType
 
       OPTIONS          = [].freeze
       REQUIRED_OPTIONS = [].freeze

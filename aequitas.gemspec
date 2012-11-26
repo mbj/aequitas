@@ -20,5 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency('backports',           '~> 2.6.4')
   s.add_dependency('adamantium',          '~> 0.0.3')
   s.add_dependency('equalizer',           '~> 0.0.1')
+  s.add_dependency('abstract_type',       '~> 0.0.2')
   s.add_dependency('descendants_tracker', '~> 0.0.1')
 end

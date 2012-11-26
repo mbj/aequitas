@@ -4,7 +4,7 @@ module Aequitas
 
   # Abstract base class for resource rules
   class Rule
-    include AbstractClass, Adamantium::Flat
+    include AbstractType, Adamantium::Flat
 
     # Return violations for resource
     #

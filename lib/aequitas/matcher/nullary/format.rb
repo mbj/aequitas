@@ -3,7 +3,7 @@ module Aequitas
     class Nullary
       # Abstract base class for format matchers
       class Format < self
-        include AbstractClass
+        include AbstractType
 
         # Matcher for regexps
         class Regexp < self

@@ -16,7 +16,7 @@ module Aequitas
 
           # Abstract base class for confirmation attribute name generators
           class Confirm
-            include Adamantium::Flat, AbstractClass
+            include Adamantium::Flat, AbstractType
 
             Aequitas.singleton_constant(self, :DEFAULT) do
 

@@ -1,7 +1,7 @@
 module Aequitas
   # Abstract base class for rule evaluators
   class Evaluator
-    include Adamantium::Flat, AbstractClass, Equalizer.new(:rule, :resource, :valid?)
+    include Adamantium::Flat, AbstractType, Equalizer.new(:rule, :resource, :valid?)
 
     # Return validated resource
     #
