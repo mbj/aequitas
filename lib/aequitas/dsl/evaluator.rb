@@ -29,7 +29,7 @@ module Aequitas
 
       # Return rules
       #
-      # @enumerable [Rule]
+      # @return [Enumerable<Rule>]
       #
       # @api private
       #
