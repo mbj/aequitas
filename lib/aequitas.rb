@@ -46,7 +46,8 @@ module Aequitas
       # @api private
       #
       def inspect
-        "#{klass.name}::#{name}".freeze
+        klass = self.class
+        "#{klass.superclass.name}::#{klass.name}".freeze
       end
     end
     subclass.class_eval(&block)
