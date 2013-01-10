@@ -10,7 +10,7 @@ describe Aequitas::DSL, '#validates_value_of' do
 
   describe 'with a lambda that returns lower and upper bounds' do
     before do
-      context_under_test.validates_value_of attribute_name, :in => bound
+      builder.validates_value_of attribute_name, :in => bound
     end
 
     let(:bound) { lambda { (Date.today - 5)..Date.today } }

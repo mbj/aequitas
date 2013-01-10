@@ -7,7 +7,7 @@ describe Aequitas::DSL, '#validates_confirmation_of' do
 
   before do
     class_under_test.send(:attr_accessor, confirmation_attribute_name)
-    context_under_test.validates_confirmation_of(attribute_name, :confirm => confirmation_attribute_name)
+    builder.validates_confirmation_of(attribute_name, :confirm => confirmation_attribute_name)
     resource.send("#{confirmation_attribute_name}=", confirmation_value)
   end
 

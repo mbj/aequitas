@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Aequitas::DSL, '#validates_acceptance_of' do
   include Spec::Shared::DSL
 
-  before { context_under_test.validates_acceptance_of attribute_name }
+  before { builder.validates_acceptance_of attribute_name }
 
   describe 'when attribute value is accepted' do
     let(:attribute_value) { true }

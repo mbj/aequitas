@@ -13,17 +13,14 @@ describe Aequitas do
     DummyObject.new(name, amount)
   end
 
-  let(:class_under_test) do
-    Class.new do
-      include Aequitas, Equalizer.new(:resource, :result)
-
+  let(:validator) do
+    Aequitas::Validator.build do
       validates_presence_of  :name
-
       validates_primitive_of :amount, :primitive => Integer
     end
   end
 
-  subject { class_under_test.new(object) }
+  subject { validator.validate(object) }
 
   describe 'valid attributes' do
     let(:name)   { 'John Doe' }

@@ -11,7 +11,7 @@ describe Aequitas::DSL, 'guard specs' do
 
       attr_accessor :foo
     end
-    context_under_test.validates_presence_of(attribute_name,options) 
+    builder.validates_presence_of(attribute_name,options) 
   end
 
   context 'with :if option' do

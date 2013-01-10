@@ -4,7 +4,7 @@ describe Aequitas::DSL, '#validates_inclusion_of' do
   include Spec::Shared::DSL
 
   before do
-    context_under_test.validates_inclusion_of attribute_name, :within => Set[*set]
+    builder.validates_inclusion_of attribute_name, :within => Set[*set]
   end
 
   let(:set) { [:a, :b, :c] }

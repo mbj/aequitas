@@ -14,20 +14,6 @@ require 'ice_nine/core_ext/object'
 # Library namespace
 module Aequitas
 
-  # Hook called when module is included
-  #
-  # @param [Class|Module] descendant
-  #
-  # @return [undefined]
-  #
-  # @api private
-  #
-  def self.included(descendant)
-    super
-    descendant.send(:include, InstanceMethods)
-    descendant.extend(ClassMethods)
-  end
-
   # Define constant singleton class
   #
   # @param [Class] klass
@@ -64,6 +50,7 @@ require 'aequitas/dsl/evaluator'
 require 'aequitas/class_methods'
 require 'aequitas/instance_methods'
 require 'aequitas/validator'
+require 'aequitas/validator/builder'
 require 'aequitas/builder'
 require 'aequitas/builder/nullary'
 require 'aequitas/matcher'

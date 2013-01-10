@@ -5,7 +5,7 @@ describe Aequitas::DSL, '#validates_length_of' do
 
   describe 'with fixnum :length option' do
     before do
-      context_under_test.validates_length_of attribute_name, :length => 3
+      builder.validates_length_of attribute_name, :length => 3
     end
 
     describe 'when validated attribute value is expected length' do
@@ -23,7 +23,7 @@ describe Aequitas::DSL, '#validates_length_of' do
 
   describe 'with  :maximum option' do
     before do
-      context_under_test.validates_length_of attribute_name, :maximum => 3
+      builder.validates_length_of attribute_name, :maximum => 3
     end
 
     describe 'when validated attribute value is at most expected length' do
@@ -41,7 +41,7 @@ describe Aequitas::DSL, '#validates_length_of' do
 
   describe 'with :minimum option' do
     before do
-      context_under_test.validates_length_of attribute_name, :minimum => 3
+      builder.validates_length_of attribute_name, :minimum => 3
     end
 
     describe 'when validated attribute value is at least expected length' do
@@ -59,7 +59,7 @@ describe Aequitas::DSL, '#validates_length_of' do
 
   describe 'with range :length options' do
     before do
-      context_under_test.validates_length_of attribute_name, :length => 2..3
+      builder.validates_length_of attribute_name, :length => 2..3
     end
 
     describe 'when validated attribute value length is within expected range' do

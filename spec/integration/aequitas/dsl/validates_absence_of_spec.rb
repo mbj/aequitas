@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Aequitas::DSL, '#validates_absence_of' do
   include Spec::Shared::DSL
 
-  before { context_under_test.validates_absence_of attribute_name }
+  before { builder.validates_absence_of attribute_name }
 
   describe 'when validated attribute is present' do
     let(:attribute_value) { :foo }

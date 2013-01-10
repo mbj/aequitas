@@ -7,7 +7,7 @@ describe Aequitas::DSL, '#validates_format_of' do
     let(:attribute_value) { mock }
 
     before do
-      context_under_test.validates_format_of attribute_name, :format => lambda { |value| proc_return }
+      builder.validates_format_of attribute_name, :format => lambda { |value| proc_return }
     end
 
     describe 'when format proc returns true' do
@@ -25,7 +25,7 @@ describe Aequitas::DSL, '#validates_format_of' do
 
   describe 'with a Regexp' do
     before do
-      context_under_test.validates_format_of attribute_name, :format => /foo/
+      builder.validates_format_of attribute_name, :format => /foo/
     end
 
     describe 'when validated attribute is present' do
@@ -43,7 +43,7 @@ describe Aequitas::DSL, '#validates_format_of' do
 
   describe 'with :url' do
     before do
-      context_under_test.validates_format_of attribute_name, :format => :url
+      builder.validates_format_of attribute_name, :format => :url
     end
 
     describe 'when validated attribute is a URL' do
@@ -61,7 +61,7 @@ describe Aequitas::DSL, '#validates_format_of' do
 
   describe 'with :email_address' do
     before do
-      context_under_test.validates_format_of attribute_name, :format => :email_address
+      builder.validates_format_of attribute_name, :format => :email_address
     end
 
     describe 'when validated attribute is an email address' do

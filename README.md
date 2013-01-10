@@ -11,11 +11,6 @@ Once these changes are mature they will hopefully be accepted and used as the ba
 
 ## Specifying Validations
 
-There are two primary ways to implement validations
-
-1) Placing validation methods with properties as params in your class
-
-
 ```ruby
 require 'aequitas'
 
@@ -27,25 +22,22 @@ class ProgrammingLanguage
   end
 end
 
-class ProgrammingLanguageValidator
-  include Aequitas
 
-  attr_accessor :name
-
+VALIDATOR = Aequitas::Validator.build do
   validates_presence_of :name
 end
 
 ruby = ProgrammingLanguage.new('ruby')
 
-validator = ProgrammingLanguageValidator.new(ruby)
-validator.valid? # => true
-validator.errors # => []
+result = VALIDATOR.new(ruby)
+result.valid? # => true
+result.errors # => []
 
 other = ProgrammingLanguage.new('')
 
-validator = ProgrammingLanguageValidator.new(other)
-validator.valid? # => false
-validator.errors # => [<Aequitas::Rule::Violation ....>]
+result = VALIDATOR.new(other)
+result.valid? # => false
+result.errors # => [<Aequitas::Rule::Violation ....>]
 
 ```
 
@@ -66,11 +58,11 @@ the #errors method.
 For example:
 
 ```ruby
-validator = AccountValidator.new(Account.new(:name => "Jose"))
-if validator.valid?
+result = YOUR_VALIDATOR.validte(Account.new(:name => "Jose"))
+if result.valid?
   # my_account is valid and can be saved
 else
-  validator.errors.each do |e|
+  result.errors.each do |e|
     puts e
   end
 end
@@ -81,4 +73,4 @@ See Aequitas::ViolationSet for all you can do with the #errors method.
 ##Contextual Validation
 
 Aequitas does not provide a means of grouping your validations into
-contexts. Define a external validator per context for this. 
+contexts. Define a validator per context for this. 

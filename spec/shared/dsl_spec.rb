@@ -5,13 +5,13 @@ module Spec
         base.class_eval do
 
           let(:rules) do
-            context_under_test.on(attribute_name).select do |rule|
+            validator.on(attribute_name).select do |rule|
               rule.instance_of?(class_of_violated_validation_rule)
             end
           end
 
           let(:class_of_violated_validation_rule) do
-            context_under_test.on(attribute_name).first.class
+            validator.on(attribute_name).first.class
           end
 
           let(:attribute_name) { :attribute_under_test }
@@ -34,16 +34,14 @@ module Spec
             end
           end
 
-          let(:context_under_test) do
-            Class.new do
-              def inspect; 'Validator'; end
-              include ::Aequitas
-            end
+          let(:builder) do
+            Aequitas::Validator::Builder.new
           end
 
-          let(:resource) { class_under_test.new(attribute_value) }
+          let(:resource)  { class_under_test.new(attribute_value) }
+          let(:validator) { builder.validator                     }
 
-          subject { context_under_test.new(resource) }
+          subject { validator.validate(resource) }
 
           def self.it_should_be_a_valid_instance
             its(:valid?) { should be(true) }
