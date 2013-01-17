@@ -4,6 +4,8 @@ It originates from [emmanuels aequitas repository](https://github.com/emmanuel/a
 with the following changes:
 
 * Only support for external validators
+* Use composable algebra for internals
+* Will allow serialization to javascript for client side validation (not implemented)
 * No contextual validators anymore (use additional external validators)
 * Use dkubb/equalizer and dkubb/adamantium where possible.
 
