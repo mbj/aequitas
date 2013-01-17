@@ -29,15 +29,15 @@ end
 
 ruby = ProgrammingLanguage.new('ruby')
 
-result = VALIDATOR.new(ruby)
+result = VALIDATOR.validate(ruby)
 result.valid? # => true
-result.errors # => []
+result.violations # => #<Set: {}>
 
 other = ProgrammingLanguage.new('')
 
-result = VALIDATOR.new(other)
+result = VALIDATOR.validate(other)
 result.valid? # => false
-result.errors # => [<Aequitas::Rule::Violation ....>]
+result.violations # => #<Set: {<Aequitas:::Violation ....>}>
 
 ```
 
