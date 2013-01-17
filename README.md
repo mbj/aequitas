@@ -62,7 +62,7 @@ result = YOUR_VALIDATOR.validate(Account.new(:name => "Jose"))
 if result.valid?
   # my_account is valid and can be saved
 else
-  result.errors.each do |e|
+  result.violations.each do |e|
     puts e
   end
 end
