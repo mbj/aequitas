@@ -58,7 +58,7 @@ the #errors method.
 For example:
 
 ```ruby
-result = YOUR_VALIDATOR.validte(Account.new(:name => "Jose"))
+result = YOUR_VALIDATOR.validate(Account.new(:name => "Jose"))
 if result.valid?
   # my_account is valid and can be saved
 else
