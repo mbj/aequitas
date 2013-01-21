@@ -49,6 +49,11 @@ Aequitas validations may be manually evaluated against a resource using the
 `#valid?` method, which will return true if the resource is valid,
 and false if it is invalid.
 
+## Credits
+
+* Markus Schirp [mbj](https://github.com/mbj)
+* Emmanuel Gomez [emmanuel](https://github.com/emmanuel)
+
 ## Working with Validation Errors
 
 If an instance fails one or more validation rules, Aequitas::Violation instances
