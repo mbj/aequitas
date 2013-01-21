@@ -43,7 +43,7 @@ module Aequitas
               min, max = minimum, maximum
 
               if min and max
-                return Machter::Binary::AND.new(min, max)
+                return Matcher::Binary::AND.new(min, max)
               end
             end
             memoize :minmax

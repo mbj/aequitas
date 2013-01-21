@@ -4,6 +4,8 @@ It originates from [emmanuels aequitas repository](https://github.com/emmanuel/a
 with the following changes:
 
 * Only support for external validators
+* Use composable algebra for internals
+* Will allow serialization to javascript for client side validation (not implemented)
 * No contextual validators anymore (use additional external validators)
 * Use dkubb/equalizer and dkubb/adamantium where possible.
 
@@ -29,15 +31,15 @@ end
 
 ruby = ProgrammingLanguage.new('ruby')
 
-result = VALIDATOR.new(ruby)
+result = VALIDATOR.validate(ruby)
 result.valid? # => true
-result.errors # => []
+result.violations # => #<Set: {}>
 
 other = ProgrammingLanguage.new('')
 
-result = VALIDATOR.new(other)
+result = VALIDATOR.validate(other)
 result.valid? # => false
-result.errors # => [<Aequitas::Rule::Violation ....>]
+result.violations # => #<Set: {<Aequitas:::Violation ....>}>
 
 ```
 
@@ -63,11 +65,11 @@ the #errors method.
 For example:
 
 ```ruby
-result = YOUR_VALIDATOR.validte(Account.new(:name => "Jose"))
+result = YOUR_VALIDATOR.validate(Account.new(:name => "Jose"))
 if result.valid?
   # my_account is valid and can be saved
 else
-  result.errors.each do |e|
+  result.violations.each do |e|
     puts e
   end
 end
