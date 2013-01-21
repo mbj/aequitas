@@ -1,4 +1,5 @@
 #encoding: utf-8
+
 Gem::Specification.new do |s|
   s.name        = 'aequitas'
   s.version     = '0.0.3'
@@ -15,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency('backports',           '~> 2.7.0')
-  s.add_dependency('anima',               '~> 0.0.1')
+  s.add_dependency('anima',               '~> 0.0.2')
   s.add_dependency('adamantium',          '~> 0.0.5')
   s.add_dependency('equalizer',           '~> 0.0.3')
   s.add_dependency('abstract_type',       '~> 0.0.2')
