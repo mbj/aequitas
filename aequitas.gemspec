@@ -1,13 +1,10 @@
-# -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
-require 'aequitas/version'
-
+#encoding: utf-8
 Gem::Specification.new do |s|
   s.name        = 'aequitas'
-  s.version     = Aequitas::VERSION
-  s.authors     = ['Emmanuel Gomez']
-  s.email       = ['emmanuel.gomez@gmail.com']
-  s.homepage    = 'https://github.com/emmanuel/aequitas'
+  s.version     = '0.0.3'
+  s.authors     = ['Markus Schirp']
+  s.email       = ['mbj@seonic.net']
+  s.homepage    = 'https://github.com/mbj/aequitas'
   s.summary     = %q{Library for performing validations on Ruby objects.}
   s.description = %q{Library for validating Ruby objects with rich metadata support.}
 
