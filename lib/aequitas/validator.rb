@@ -3,7 +3,7 @@ module Aequitas
   class Validator
     include Adamantium, Enumerable 
 
-    # Validate resource against rules
+    # Run validator on resource
     #
     # @param [Resource] resource
     #
@@ -11,7 +11,7 @@ module Aequitas
     #
     # @api private
     #
-    def validate(resource)
+    def call(resource)
       Result.new(self, resource)
     end
 

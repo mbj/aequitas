@@ -20,7 +20,7 @@ describe Aequitas do
     end
   end
 
-  subject { validator.validate(object) }
+  subject { validator.call(object) }
 
   describe 'valid attributes' do
     let(:name)   { 'John Doe' }
