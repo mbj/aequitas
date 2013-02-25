@@ -41,7 +41,7 @@ module Spec
           let(:resource)  { class_under_test.new(attribute_value) }
           let(:validator) { builder.validator                     }
 
-          subject { validator.validate(resource) }
+          subject { validator.call(resource) }
 
           def self.it_should_be_a_valid_instance
             its(:valid?) { should be(true) }
