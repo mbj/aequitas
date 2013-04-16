@@ -31,13 +31,13 @@ end
 
 ruby = ProgrammingLanguage.new('ruby')
 
-result = VALIDATOR.validate(ruby)
+result = VALIDATOR.call(ruby)
 result.valid? # => true
 result.violations # => #<Set: {}>
 
 other = ProgrammingLanguage.new('')
 
-result = VALIDATOR.validate(other)
+result = VALIDATOR.call(other)
 result.valid? # => false
 result.violations # => #<Set: {<Aequitas:::Violation ....>}>
 
@@ -65,7 +65,7 @@ the #errors method.
 For example:
 
 ```ruby
-result = YOUR_VALIDATOR.validate(Account.new(:name => "Jose"))
+result = YOUR_VALIDATOR.call(Account.new(:name => "Jose"))
 if result.valid?
   # my_account is valid and can be saved
 else
