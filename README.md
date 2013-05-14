@@ -24,7 +24,6 @@ class ProgrammingLanguage
   end
 end
 
-
 VALIDATOR = Aequitas::Validator.build do
   validates_presence_of :name
 end
@@ -40,7 +39,6 @@ other = ProgrammingLanguage.new('')
 result = VALIDATOR.call(other)
 result.valid? # => false
 result.violations # => #<Set: {<Aequitas:::Violation ....>}>
-
 ```
 
 See `Aequitas::Macros` to learn about the complete collection of validation rules available.
