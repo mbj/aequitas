@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'aequitas'
   s.version     = '0.0.3'
   s.authors     = ['Markus Schirp']
-  s.email       = ['mbj@seonic.net']
+  s.email       = ['mbj@schirp-dso.com']
   s.homepage    = 'https://github.com/mbj/aequitas'
   s.summary     = %q{Library for performing validations on Ruby objects.}
   s.description = %q{Library for validating Ruby objects with rich metadata support.}
