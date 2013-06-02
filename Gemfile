@@ -2,6 +2,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
+gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
 
 eval File.read('Gemfile.devtools')
